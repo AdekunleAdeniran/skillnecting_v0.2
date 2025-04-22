@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from skillnecting import create_app
+from skillnecting import create_app, db
 import sentry_sdk
 from sentry_sdk.integrations.flask import FlaskIntegration
 '''
