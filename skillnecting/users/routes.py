@@ -62,11 +62,10 @@ def login():
 @users.route('/github_login')
 def github_login():
     """Function and route to redirect user to git hub to authorize"""
-    return github.authorize()
+    return github.authorize_redirect(redirect_uri=url_for('users.authorized', _external=True))
 
 
 @users.route('/github-callback')
-@github.authorized_handler
 def authorized(oauth_token):
     next_url = request.args.get('next') or url_for('main.home')
     if oauth_token is None:
@@ -84,7 +83,6 @@ def authorized(oauth_token):
     return redirect(next_url)
 
 
-@github.access_token_getter
 def token_getter():
     user = g.user
     if user is not None:
@@ -192,5 +190,3 @@ def reset_token(token):
         flash('Your Password has been updated! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
     return render_template("reset_token.html", title="Reset Password", form=form)
-
-
