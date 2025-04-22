@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from datetime import datetime
 from flask import current_app
-from itsdangerous import TimedJSONWebSignatureSerializer as TJS
+from itsdangerous import URLSafeTimedSerializer as TJS
 from skillnecting import db, login_manager
 from flask_login import UserMixin
 
